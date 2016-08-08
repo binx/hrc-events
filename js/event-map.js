@@ -63,6 +63,7 @@ var eventsMap = function() {
         + " " + p.city + " " + p.postalCode;
     },
     addMarkers : function(features) {
+      if (features.length == 0) return;
       markers = [];
       features.forEach(function(f){
         var marker = L.marker(L.latLng(f.locations[0].latitude, f.locations[0].longitude));
@@ -124,6 +125,10 @@ var eventsMap = function() {
     },
     doSuggestion : function(query) {
       if (xhr) xhr.abort();
+      if (!query.trim()) {
+        eventsApp.showSuggestions([]);
+        return;
+      }
       xhr = d3.json("https://search.mapzen.com/v1/autocomplete?text="+query+"&sources=wof&api_key=search-Ff4Gs8o", function(error, json) {
         if (json && json.length)
           eventsApp.showSuggestions(json.features);
@@ -212,7 +217,7 @@ var eventsMap = function() {
       });
     }
   };
-    // 100 millisecond throttle was too fast, still got Too Many Requests complaints from mapzen
-  eventsApp.throttledDoSuggestion = _.throttle(eventsApp.doSuggestion, 250);
+    // 250 millisecond throttle was too fast, still got Too Many Requests complaints from mapzen
+  eventsApp.throttledDoSuggestion = _.throttle(eventsApp.doSuggestion, 500);
   return eventsApp;
 }
