@@ -141,6 +141,10 @@ var eventsMap = function() {
       }).classed("selected",function(d,i){ return i == keyIndex; });
     },
     doSuggestion : function(query) {
+      if (!query.trim()) {
+        eventsApp.showSuggestions([]);
+        return;
+      }
       if (xhr) xhr.abort();
       xhr = d3.json("https://search.mapzen.com/v1/autocomplete?text="+query+"&api_key=search-Ff4Gs8o", function(err, results) {
         // filter autocomplete to only show USA results
