@@ -12,35 +12,40 @@
     <script src="js/d3.v3.min.js"></script>
   </head>
   <body>
-    <div id="events" class="start">
-      <div class="header">
-        <h1><span class="hrc"></span>Campaign Event Map</h1>
-      </div>
-      <div class="start-wrapper state">
-        <p>Welcome to the HRC Events Map! Get started by searching for your location, and we will show you events in your area leading up to the election.</p>
-      </div>
-      
-      <div id="searchbox">
-        <div class="search-row">
-          <label>Search for a city, neighborhood, address, or zip code:</label>
-          <input type="text" id="search-input" placeholder="example: San Francisco">
-          <span class="fa fa-times" aria-hidden="true"></span>
-          <button>Submit</button>
-          <div class="autocomplete"></div>
-        </div>
-        <div class="search-row radius-wrapper">
-          <label>Show me events within:</label>
-          <select id="radius-select">
-            <option value="5">5 Miles</option>
-            <option value="10" selected>10 Miles</option>
-            <option value="25">25 Miles</option>
-            <option value="50">50 Miles</option>
-          </select>
-        </div>
-      </div>
+    <div id="header">
+      <div class="wrapper">
+        <h1>Logo</h1>
 
+        <div class="search-table">
+          <div class="search-table-item search-table-item-primary">
+            <input class="input-block" id="search-input" type="text" placeholder="Enter a city, neighborhood, or address">
+            <div class="autocomplete"></div>
+          </div>
+          <div class="search-table-item">
+            <button class="btn" type="submit">Search</button>
+          </div>
+        </div>
+        <!-- <div>
+          <div class="search-row">
+            <input type="text" id="search-input" placeholder="Enter a city, neighborhood, or address">
+            <span class="fa fa-times" aria-hidden="true"></span>
+            <button>Submit</button>
+            <div class="autocomplete"></div>
+          </div>
+          <div class="search-row radius-wrapper" style="display:none;">
+            <label>Show me events within:</label>
+            <select id="radius-select">
+              <option value="5">5 Miles</option>
+              <option value="10" selected>10 Miles</option>
+              <option value="25">25 Miles</option>
+              <option value="50">50 Miles</option>
+            </select>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div id="events" class="start">
       <div class="event-wrapper state">
-        <h2>Events Near You:</h2>
         <div class="event-list"></div>
       </div>
 
@@ -55,7 +60,7 @@
     </div>
     <div id="map">
       <div id="map-search">
-        <input type="checkbox" id="move-update">Redo search when map moved
+        <input type="checkbox" checked id="move-update">Redo search when map moved
       </div>
     </div>
     <script src="js/underscore-min.js"></script>
@@ -64,7 +69,7 @@
     <script type="text/javascript">
       var e = eventsMap();
       e.init();
-      
+
       if (document.getElementById("search-input").value.length)
         e.onSubmit(document.getElementById("search-input").value);
     </script>

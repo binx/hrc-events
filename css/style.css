@@ -1,40 +1,139 @@
+/* Reset */
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote,
+body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt,
+em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6,
+header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu,
+nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike,
+strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u,
+ul, var, video {
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  border: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav,
+section {
+  display: block;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  line-height: 1.4em;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:after, blockquote:before, q:after, q:before {
+  content: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-user-select: text;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 html, body {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: Tofino,'Helvetica Neue',Helvetica,sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
 /*********** header styles ***********/
 
-.header {
-  background: rgba(12,87,161,.2);
-  padding: 10px 20px;
+#header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 115px;
+  padding: 28px 0;
+  background: #fff;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, .08);
+  z-index: 1000;
 }
-.header h1 {
-  font-size: 45px;
-  line-height: 68px;
-  vertical-align: middle;
-  margin: 0;
-  font-weight: normal;
-}
-.hrc {
-  background: url(./Highlight_h_logo_large.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: inline-block;
-  width: 80px;
-  height: 68px;
-  margin-right: 20px;
+
+#header h1 {
   float: left;
+  width: 70px;
+  height: 0;
+  overflow: hidden;
+  padding-top: 59px;
+  background: url("../images/hrc-logo.png");
+  background-size: 70px;
+  margin-right: 26px;
+}
+
+.wrapper {
+  width: 624px;
+  margin: 0 auto;
+}
+
+input {
+  height: 44px;
+  width: 100%;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 0 9px;
+}
+
+input:focus {
+  border-color: #12a8e0;
+  outline: 0;
+}
+
+button {
+  padding: 0 18px;
+  color: #fff;
+  height: 44px;
+  background: #12a8e0;
+  border-radius: 5px;
+  border: 0;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.search-table {
+  display: table;
+  padding-top: 9px;
+}
+
+.search-table-item {
+  display: table-cell;
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle
+}
+
+.search-table-item-primary {
+  width: 99%;
 }
 
 /*********** text group styles ***********/
 
 #events {
-  box-sizing: border-box;
+  width: 35%;
+  padding-top: 115px;
 }
+
 #events .state {
   display: none;
   padding: 20px;
@@ -48,16 +147,24 @@ html, body {
 
 /*********** map styles ***********/
 
-#map, #events{
+#map {
+  position: fixed;
+  top: 115px;
+  bottom: 0;
+  right: 0;
+  left: 35%;
+}
+
+/*#map, #events{
   width: 50%;
   height: 100%;
-}
-#map {
+}*/
+/*#map {
   position: fixed;
   right: 0;
   top: 0;
   border-left: 1px solid #ccc;
-}
+}*/
 #map-search {
   position: absolute;
   top: 0;
@@ -208,7 +315,7 @@ html, body {
 }
 .list-event .rsvp:hover,
 .leaflet-popup-content .rsvp a:hover {
-  background: rgba(192,23,38,.2); 
+  background: rgba(192,23,38,.2);
 }
 .list-event .location {
   font-style: italic;
